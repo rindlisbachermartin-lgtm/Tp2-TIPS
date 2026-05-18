@@ -35,8 +35,8 @@ function App() {
   // Efecto para el fondo interactivo
   useEffect(() => {
     const handleMouseMove = (e) => {
-      document.documentElement.style.setProperty('--x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--y', `${e.clientY}px`);
+      document.documentElement.style.setProperty("--x", `${e.clientX}px`);
+      document.documentElement.style.setProperty("--y", `${e.clientY}px`);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -86,7 +86,8 @@ function App() {
       left: 0,
       width: "100%",
       height: "100%",
-      background: "radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(59, 130, 246, 0.15), transparent 80%)",
+      background:
+        "radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(59, 130, 246, 0.15), transparent 80%)",
       pointerEvents: "none",
       zIndex: 0,
     },
@@ -175,68 +176,70 @@ function App() {
 
       {/* Contenedor principal para mantener el z-index por encima del fondo */}
       <div style={styles.contentContainer}>
-        <h1 style={{ color: "#f8fafc", marginBottom: "40px", fontSize: "2rem" }}>
+        <h1
+          style={{ color: "#f8fafc", marginBottom: "40px", fontSize: "2rem" }}
+        >
           Tips de Productividad
         </h1>
 
-      {/* Tarjeta de Tip */}
-      <div style={styles.card}>
-        <p style={styles.tipText}>"{tips[indice].texto}"</p>
+        {/* Tarjeta de Tip */}
+        <div style={styles.card}>
+          <p style={styles.tipText}>"{tips[indice].texto}"</p>
 
-        <div style={styles.actionBar}>
-          {/* Botón de Votos (Messirve) */}
-          <button
-            style={styles.voteBtn}
-            onClick={votar}
-            onMouseDown={(e) =>
-              (e.currentTarget.style.transform = "scale(0.95)")
-            }
-            onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
-          >
-            <span>👍 Messirve</span>
-            <span>{tips[indice].votos}</span>
-          </button>
+          <div style={styles.actionBar}>
+            {/* Botón de Votos (Messirve) */}
+            <button
+              style={styles.voteBtn}
+              onClick={votar}
+              onMouseDown={(e) =>
+                (e.currentTarget.style.transform = "scale(0.95)")
+              }
+              onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            >
+              <span>Votar </span>
+              <span>{tips[indice].votos}</span>
+            </button>
 
-          {/* Botón Siguiente con Animación Simple */}
-          <button
-            style={styles.nextBtn}
-            onClick={siguiente}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = "#2563eb")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "#3b82f6")
-            }
-          >
-            Next Tip
-            <span style={{ fontSize: "1.2rem" }}>➡️</span>
-          </button>
+            {/* Botón Siguiente con Animación Simple */}
+            <button
+              style={styles.nextBtn}
+              onClick={siguiente}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#2563eb")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#3b82f6")
+              }
+            >
+              Next Tip
+              <span style={{ fontSize: "1.2rem" }}>➡️</span>
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Ranking en tiempo real */}
-      <div style={styles.leaderBoard}>
-        <h3
-          style={{
-            color: "#94a3b8",
-            margin: "0 0 10px 0",
-            fontSize: "0.9rem",
-            textTransform: "uppercase",
-            letterSpacing: "1px",
-          }}
-        >
-          🏆 Tip más útil:
-        </h3>
-        {masVotado.votos > 0 ? (
-          <p style={{ color: "#f8fafc", fontWeight: "600", margin: 0 }}>
-            "{masVotado.texto}"
-          </p>
-        ) : (
-          <p style={{ color: "#64748b", margin: 0 }}>
-            Esperando primer voto...
-          </p>
-        )}
-      </div>
+        {/* Ranking en tiempo real */}
+        <div style={styles.leaderBoard}>
+          <h3
+            style={{
+              color: "#94a3b8",
+              margin: "0 0 10px 0",
+              fontSize: "0.9rem",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+            }}
+          >
+            🏆 Tip más útil:
+          </h3>
+          {masVotado.votos > 0 ? (
+            <p style={{ color: "#f8fafc", fontWeight: "600", margin: 0 }}>
+              "{masVotado.texto}"
+            </p>
+          ) : (
+            <p style={{ color: "#64748b", margin: 0 }}>
+              Esperando primer voto...
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
